@@ -10,6 +10,7 @@ authors = ["snjot <snjot.dev@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 numpy = "^1.19.2"
+pyglet = "^1.5.8"
 
 [tool.poetry.dev-dependencies]
 rope = "^0.18.0"

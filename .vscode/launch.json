@@ -5,13 +5,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Module",
+            "name": "CUI Mode",
             "type": "python",
             "request": "launch",
             "module": "markovdp",
             "args": [
                 "--delay",
-                "0.01"
+                "0.01",
+                "--verbose"
+            ]
+        },
+        {
+            "name": "GUI Mode",
+            "type": "python",
+            "request": "launch",
+            "module": "markovdp",
+            "args": [
+                "--delay",
+                "0.01",
+                "--gui"
             ]
         }
     ]
