@@ -4,6 +4,7 @@ from typing import List
 from markovdp.agent import Agent
 from markovdp.drawer import Drawer
 from markovdp.environment import Environment
+from markovdp.state import State
 
 
 class Game:
@@ -23,17 +24,20 @@ class Game:
             state_history = [state]
 
             while not done:
-                action = self._agent.policy(state)
-                next_state, reward, done = self._env.step(action)
-
+                state, done, total_reward = self.update(state, total_reward, state_history)
                 time.sleep(self._delay)
-                self._drawer.draw(self._env, next_state, action)
 
-                total_reward += reward
-                state = next_state
-
-                state_history.append(state)
-
-            # if is_verbose:
-            #     print(f"History: {state_history}")
             print(f"Episode {i}: Agent gets {total_reward} reward.")
+
+    def update(self, state: State, total_reward: float, state_history: List[State]):
+        action = self._agent.policy(state)
+        next_state, reward, done = self._env.step(action)
+
+        self._drawer.draw(self._env, next_state, action)
+
+        total_reward += reward
+        state = next_state
+
+        state_history.append(state)
+
+        return state, done, total_reward
