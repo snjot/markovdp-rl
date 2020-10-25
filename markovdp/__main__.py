@@ -1,7 +1,7 @@
 import argparse
 from typing import List
 
-from markovdp.drawer import CuiDrawer, NullDrawer
+from markovdp.drawer import CuiDrawer, GuiDrawer, NullDrawer
 from markovdp.game import Game
 
 
@@ -28,10 +28,18 @@ def create_grid() -> List[List[int]]:
     return [[0, 0, 0, 1], [0, 9, 0, -1], [0, 0, 0, 0]]
 
 
-def main(delay: float, n_games: int, is_verbose: bool):
+def select_drawer(is_verbose: bool, is_gui: bool):
+    if is_gui:
+        return GuiDrawer()
+    if is_verbose:
+        return CuiDrawer()
+    return NullDrawer()
+
+
+def main(delay: float, n_games: int, is_verbose: bool, is_gui: bool):
     grid = create_grid()
 
-    drawer = CuiDrawer() if is_verbose else NullDrawer()
+    drawer = select_drawer(is_verbose, is_gui)
     game = Game(drawer, grid, n_games, delay)
 
     game.play()
@@ -39,4 +47,4 @@ def main(delay: float, n_games: int, is_verbose: bool):
 
 if __name__ == "__main__":
     args = parse_args()
-    main(args.delay, args.games, args.verbose)
+    main(args.delay, args.games, args.verbose, args.gui)

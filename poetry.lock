@@ -169,6 +169,14 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.2.0"
 
 [[package]]
+category = "main"
+description = "Cross-platform windowing and multimedia library"
+name = "pyglet"
+optional = false
+python-versions = "*"
+version = "1.5.8"
+
+[[package]]
 category = "dev"
 description = "Python parsing module"
 name = "pyparsing"
@@ -250,7 +258,7 @@ python-versions = "*"
 version = "3.7.4.3"
 
 [metadata]
-content-hash = "d5f1e266a8932452efe66694240c4c997db51bd5018e13c354936062ffde6f0c"
+content-hash = "908b053f337a06356d01530e9bc8602704cec124bcbc1bd70fb2ca2e878a2ac3"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -345,6 +353,10 @@ pycodestyle = [
 pyflakes = [
     {file = "pyflakes-2.2.0-py2.py3-none-any.whl", hash = "sha256:0d94e0e05a19e57a99444b6ddcf9a6eb2e5c68d3ca1e98e90707af8152c90a92"},
     {file = "pyflakes-2.2.0.tar.gz", hash = "sha256:35b2d75ee967ea93b55750aa9edbbf72813e06a66ba54438df2cfac9e3c27fc8"},
+]
+pyglet = [
+    {file = "pyglet-1.5.8-py3-none-any.whl", hash = "sha256:bfebd1f538b002c1fb9071c63e5bd39410d402a6cd594a6e6a64e3e00e132a2a"},
+    {file = "pyglet-1.5.8.zip", hash = "sha256:bf7f579c3029661f8ac3a296fd13cdcbf424280aa527b5907454d0a5f8e3f224"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
