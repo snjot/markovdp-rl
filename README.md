@@ -9,6 +9,7 @@ This is the implementation of reinforcement learning algorithm for Markov Decisi
 ```zsh
 git clone git@github.com:snjot/markovdp-rl.git
 cd markovdp-rl
+poetry install
 poetry run python -m markovdp --gui --delay 0.2
 ```
 
