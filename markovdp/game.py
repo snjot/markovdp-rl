@@ -1,7 +1,7 @@
 import time
 from typing import List
 
-from markovdp.agent import Agent
+from markovdp.agent import NoBrain
 from markovdp.drawer import Drawer
 from markovdp.environment import Environment
 from markovdp.state import State
@@ -13,7 +13,7 @@ class Game:
         self._n_games = n_games
         self._delay = delay
         self._env = Environment(grid)
-        self._agent = Agent(self._env)
+        self._agent = NoBrain(self._env)
 
     def play(self):
         for i in range(self._n_games):
