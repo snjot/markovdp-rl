@@ -1,19 +1,27 @@
 import time
-from typing import List
+from typing import List, Type
 
-from markovdp.agent import PolicyIter
+from markovdp.agent import Agent, NoBrain, PolicyIter, ValueIter
 from markovdp.drawer import Drawer
 from markovdp.environment import Environment
 from markovdp.state import State
 
 
+def select_agent_class(method: str) -> Type[Agent]:
+    if method == "PolicyIter":
+        return PolicyIter
+    elif method == "ValueIter":
+        return ValueIter
+    return NoBrain
+
+
 class Game:
-    def __init__(self, drawer: Drawer, grid: List[List[int]], n_games: int, delay: float):
+    def __init__(self, drawer: Drawer, grid: List[List[int]], n_games: int, delay: float, method: str):
         self._drawer = drawer
         self._n_games = n_games
         self._delay = delay
         self._env = Environment(grid)
-        self._agent = PolicyIter(self._env)
+        self._agent = select_agent_class(method)(self._env)
 
     def play(self):
         for i in range(self._n_games):
