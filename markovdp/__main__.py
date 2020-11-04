@@ -19,6 +19,12 @@ def parse_args():
         default=10,
         help="number of games",
     )
+    parser.add_argument(
+        "--method",
+        type=str,
+        default="NoBrain",
+        help="method the agent applies",
+    )
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--gui", action="store_true")
     return parser.parse_args()
@@ -36,15 +42,15 @@ def select_drawer(is_verbose: bool, is_gui: bool):
     return NullDrawer()
 
 
-def main(delay: float, n_games: int, is_verbose: bool, is_gui: bool):
+def main(delay: float, n_games: int, is_verbose: bool, is_gui: bool, method: str):
     grid = create_grid()
 
     drawer = select_drawer(is_verbose, is_gui)
-    game = Game(drawer, grid, n_games, delay)
+    game = Game(drawer, grid, n_games, delay, method)
 
     game.play()
 
 
 if __name__ == "__main__":
     args = parse_args()
-    main(args.delay, args.games, args.verbose, args.gui)
+    main(args.delay, args.games, args.verbose, args.gui, args.method)

@@ -36,6 +36,7 @@ class Environment:
         return states
 
     def get_grid(self, position: Tuple[int, int]):
+        """get the grid value at the postion (x, y)"""
         return self._grid[position[1]][position[0]]
 
     def can_action_at(self, state: State) -> bool:
@@ -44,15 +45,15 @@ class Environment:
         else:
             return False
 
-    def transit_func(self, state: State, action: Action) -> Dict[int, float]:
-        transition_probs = {}
+    def transit_func(self, state: State, action: Action) -> Dict[State, float]:
+        transition_probs: Dict[State, float] = {}
         if not self.can_action_at(state):
             return transition_probs
 
         opposite_direction = Action(action.value * -1)
 
         for a in self.actions:
-            prob = 0
+            prob: float = 0.0
             if a == action:
                 prob = self._move_prob
             elif a != opposite_direction:
@@ -94,8 +95,7 @@ class Environment:
     def transit(self, state: State, action: Action) -> Tuple[State, float, bool]:
         transition_probs = self.transit_func(state, action)
         if len(transition_probs) == 0:
-            # TODO make State nonnullable
-            return None, None, True
+            return state, 0.0, True
 
         next_states = []
         probs = []
@@ -103,9 +103,9 @@ class Environment:
             next_states.append(state)
             probs.append(prob)
 
-        next_states = np.random.choice(next_states, p=probs)
-        reward, done = self.reward_func(next_states)
-        return next_states, reward, done
+        next_state = np.random.choice(next_states, p=probs)
+        reward, done = self.reward_func(next_state)
+        return next_state, reward, done
 
     def _move(self, state: State, action: Action) -> State:
         if not self.can_action_at(state):

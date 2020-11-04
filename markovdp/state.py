@@ -12,7 +12,7 @@ class State:
     def __hash__(self) -> int:
         return hash((self._row, self._column))
 
-    def __eq__(self, other: State) -> bool:
+    def __eq__(self, other: State) -> bool:  # type: ignore
         return self._row == other._row and self._column == other._column
 
     @property

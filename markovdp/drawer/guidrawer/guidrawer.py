@@ -37,13 +37,13 @@ class GuiDrawer(Drawer):
                 grid = env.get_grid((pos_x, pos_y))
                 grid_shape = pyglet.shapes.Rectangle(
                     x=pos_x * GRID_SIZE,
-                    y=pos_y * GRID_SIZE,
+                    y=_to_pyglet_y(pos_y, env) * GRID_SIZE,
                     width=GRID_SIZE,
                     height=GRID_SIZE,
                     color=GuiDrawer.MAP_COLORS[grid],
                 )
                 grid_shape.draw()
-        self._agent.position = (state.column * GRID_SIZE, state.row * GRID_SIZE)
+        self._agent.position = (state.column * GRID_SIZE, _to_pyglet_y(state.row, env) * GRID_SIZE)
         self._agent.draw()
         self._tick()
 
@@ -55,3 +55,7 @@ class GuiDrawer(Drawer):
             window.dispatch_events()
             window.dispatch_event("on_draw")
             window.flip()
+
+
+def _to_pyglet_y(y: int, env: Environment) -> int:
+    return env.row_length - 1 - y

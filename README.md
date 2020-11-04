@@ -13,6 +13,36 @@ poetry install
 poetry run python -m markovdp --gui --delay 0.2
 ```
 
+### Play with Smart Agents
+
+You can play with smart agents as follows:
+
+```zsh
+poetry run python -m markovdp --gui --delay 0.2 --method PolicyIter
+```
+
+Available methods:
+
+| argument              | method the agent applies  |
+| --------------------- | ------------------------- |
+| `--method PolicyIter` | Policy Iteration          |
+| `--method ValueIter`  | Value Iteration           |
+| None of the above     | Random Action (No Policy) |
+
+## Improvement
+
+- add type hint
+- separate code into files
+- improve design
+- make State immutable
+- add verbose mode
+- add GUI mode
+
+## Implemented
+
+- [x] PolicyIteration
+- [x] ValueIteration
+
 ## TODO
 
 - [ ] implement Monte Carlo agent
