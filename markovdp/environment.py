@@ -36,6 +36,7 @@ class Environment:
         return states
 
     def get_grid(self, position: Tuple[int, int]):
+        """get the grid value at the postion (x, y)"""
         return self._grid[position[1]][position[0]]
 
     def can_action_at(self, state: State) -> bool:
