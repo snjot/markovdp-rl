@@ -1,7 +1,7 @@
 import time
 from typing import List
 
-from markovdp.agent import ValueIter
+from markovdp.agent import PolicyIter
 from markovdp.drawer import Drawer
 from markovdp.environment import Environment
 from markovdp.state import State
@@ -13,7 +13,7 @@ class Game:
         self._n_games = n_games
         self._delay = delay
         self._env = Environment(grid)
-        self._agent = ValueIter(self._env)
+        self._agent = PolicyIter(self._env)
 
     def play(self):
         for i in range(self._n_games):

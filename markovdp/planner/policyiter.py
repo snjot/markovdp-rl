@@ -1,5 +1,7 @@
 from typing import Dict, List
 
+import numpy as np
+
 from markovdp.action import Action
 from markovdp.environment import Environment
 from markovdp.planner.base import Planner
@@ -20,6 +22,10 @@ class PolicyIterationPlanner(Planner):
             self._policy[s] = {}
             for a in actions:
                 self._policy[s][a] = 1 / len(actions)
+
+    def choose_action(self, state: State) -> Action:
+        policy_in_state = self._policy[state]
+        return np.random.choice(list(policy_in_state.keys()), p=list(policy_in_state.values()))
 
     def plan(self, gamma: float = 0.9, threshold: float = 0.0001) -> List[List[float]]:
         self.initialize()
